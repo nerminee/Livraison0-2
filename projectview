@@ -1,43 +1,68 @@
-<%@ page import="taskmanagement1.Module" %>
+<%@ page import="taskmanagement1.Project" %>
 
 
 
-<div class="fieldcontain ${hasErrors(bean: moduleInstance, field: 'nom', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'nom', 'error')} ">
 	<label for="nom">
-		<g:message code="module.nom.label" default="Nom" />
+		<g:message code="project.nom.label" default="Nom" />
 		
 	</label>
-	<g:textField name="nom" value="${moduleInstance?.nom}"/>
+	<g:textField name="nom" value="${projectInstance?.nom}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: moduleInstance, field: 'description', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'description', 'error')} ">
 	<label for="description">
-		<g:message code="module.description.label" default="Description" />
+		<g:message code="project.description.label" default="Description" />
 		
 	</label>
-	<g:textField name="description" value="${moduleInstance?.description}"/>
+	<g:textField name="description" value="${projectInstance?.description}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: moduleInstance, field: 'projet', 'error')} required">
-	<label for="projet">
-		<g:message code="module.projet.label" default="Projet" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'datedebut', 'error')} ">
+	<label for="datedebut">
+		<g:message code="project.datedebut.label" default="Datedebut" />
+		
 	</label>
-	<g:select id="projet" name="projet.id" from="${taskmanagement1.Project.list()}" optionKey="id" required="" value="${moduleInstance?.projet?.id}" class="many-to-one"/>
+	<g:datePicker name="datedebut" precision="day"  value="${projectInstance?.datedebut}" default="none" noSelection="['': '']" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: moduleInstance, field: 'taches', 'error')} ">
-	<label for="taches">
-		<g:message code="module.taches.label" default="Taches" />
+<div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'datefin', 'error')} ">
+	<label for="datefin">
+		<g:message code="project.datefin.label" default="Datefin" />
+		
+	</label>
+	<g:datePicker name="datefin" precision="day"  value="${projectInstance?.datefin}" default="none" noSelection="['': '']" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'modules', 'error')} ">
+	<label for="modules">
+		<g:message code="project.modules.label" default="Modules" />
 		
 	</label>
 	
 <ul class="one-to-many">
-<g:each in="${moduleInstance?.taches?}" var="t">
+<g:each in="${projectInstance?.modules?}" var="m">
+    <li><g:link controller="module" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="module" action="create" params="['project.id': projectInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'module.label', default: 'Module')])}</g:link>
+</li>
+</ul>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'taches', 'error')} ">
+	<label for="taches">
+		<g:message code="project.taches.label" default="Taches" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${projectInstance?.taches?}" var="t">
     <li><g:link controller="task" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="task" action="create" params="['module.id': moduleInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'task.label', default: 'Task')])}</g:link>
+<g:link controller="task" action="create" params="['project.id': projectInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'task.label', default: 'Task')])}</g:link>
 </li>
 </ul>
 
