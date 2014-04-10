@@ -1,0 +1,68 @@
+<%@ page import="taskmanagement1.Task" %>
+
+
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'nom', 'error')} required">
+	<label for="nom">
+		<g:message code="task.nom.label" default="Nom" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="nom" required="" value="${taskInstance?.nom}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'duree', 'error')} required">
+	<label for="duree">
+		<g:message code="task.duree.label" default="Duree" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:datePicker name="duree" precision="day"  value="${taskInstance?.duree}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'statut', 'error')} ">
+	<label for="statut">
+		<g:message code="task.statut.label" default="Statut" />
+		
+	</label>
+	<g:checkBox name="statut" value="${taskInstance?.statut}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'description', 'error')} required">
+	<label for="description">
+		<g:message code="task.description.label" default="Description" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="description" required="" value="${taskInstance?.description}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'datedebut', 'error')} required">
+	<label for="datedebut">
+		<g:message code="task.datedebut.label" default="Datedebut" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:datePicker name="datedebut" precision="day"  value="${taskInstance?.datedebut}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'datefin', 'error')} required">
+	<label for="datefin">
+		<g:message code="task.datefin.label" default="Datefin" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:datePicker name="datefin" precision="day"  value="${taskInstance?.datefin}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'module', 'error')} required">
+	<label for="module">
+		<g:message code="task.module.label" default="Module" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="module" name="module.id" from="${taskmanagement1.Module.list()}" optionKey="id" required="" value="${taskInstance?.module?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: taskInstance, field: 'projet', 'error')} required">
+	<label for="projet">
+		<g:message code="task.projet.label" default="Projet" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="projet" name="projet.id" from="${taskmanagement1.Project.list()}" optionKey="id" required="" value="${taskInstance?.projet?.id}" class="many-to-one"/>
+</div>
+
