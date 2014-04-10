@@ -1,0 +1,83 @@
+
+<%@ page import="taskmanagement1.Ressource" %>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="<g:createLinkTo dir='css' file='style.css'/>" rel="stylesheet" type="text/css" />
+<!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
+<g:javascript  src="cufon-yui.js"/>
+<g:javascript  src="droid_sans_400-droid_sans_700.font.js"/>
+<g:javascript src="cuf_run.js"/>
+		<meta name="ressource" content="list">
+		<g:set var="entityName" value="${message(code: 'ressource.label', default: 'Ressource')}" />
+		<title><g:message code="default.list.label" args="[entityName]" /></title>
+	</head>
+	<body>
+	<div class="main">
+
+  <div class="header">
+    <div class="header_resize">
+      <div class="logo"><h1><small>For planning projects </small><span>Task</span>Manager</h1></div>
+      <div class="clr"></div>
+      
+      </div>
+      </div>
+  
+  </div>
+		<a href="#list-ressource" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<div class="nav" role="navigation">
+			<ul>
+				<li><a class="home" href="${createLink(uri: '/test')}"><g:message code="default.home.label"/></a></li>
+				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+			</ul>
+		</div>
+		<div id="list-ressource" class="content scaffold-list" role="main">
+			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<g:if test="${flash.message}">
+			<div class="message" role="status">${flash.message}</div>
+			</g:if>
+			<table>
+				<thead>
+					<tr>
+					
+						<g:sortableColumn property="username" title="${message(code: 'ressource.username.label', default: 'Username')}" />
+					
+						<g:sortableColumn property="password" title="${message(code: 'ressource.password.label', default: 'Password')}" />
+					
+						<g:sortableColumn property="accountExpired" title="${message(code: 'ressource.accountExpired.label', default: 'Account Expired')}" />
+					
+						<g:sortableColumn property="accountLocked" title="${message(code: 'ressource.accountLocked.label', default: 'Account Locked')}" />
+					
+						<g:sortableColumn property="enabled" title="${message(code: 'ressource.enabled.label', default: 'Enabled')}" />
+					
+						<th><g:message code="ressource.modules.label" default="Modules" /></th>
+					
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${ressourceInstanceList}" status="i" var="ressourceInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
+						<td><g:link action="show" id="${ressourceInstance.id}">${fieldValue(bean: ressourceInstance, field: "username")}</g:link></td>
+					
+						<td>${fieldValue(bean: ressourceInstance, field: "password")}</td>
+					
+						<td><g:formatBoolean boolean="${ressourceInstance.accountExpired}" /></td>
+					
+						<td><g:formatBoolean boolean="${ressourceInstance.accountLocked}" /></td>
+					
+						<td><g:formatBoolean boolean="${ressourceInstance.enabled}" /></td>
+					
+						<td>${fieldValue(bean: ressourceInstance, field: "modules")}</td>
+					
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<g:paginate total="${ressourceInstanceTotal}" />
+			</div>
+		</div>
+	</body>
+</html>
