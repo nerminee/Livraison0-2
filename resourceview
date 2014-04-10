@@ -1,0 +1,84 @@
+p<%@ page import="taskmanagement1.Ressource" %>
+
+
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'username', 'error')} required">
+	<label for="username">
+		<g:message code="ressource.username.label" default="Username" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="username" required="" value="${ressourceInstance?.username}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'password', 'error')} required">
+	<label for="password">
+		<g:message code="ressource.password.label" default="Password" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="password" required="" value="${ressourceInstance?.password}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'accountExpired', 'error')} ">
+	<label for="accountExpired">
+		<g:message code="ressource.accountExpired.label" default="Account Expired" />
+		
+	</label>
+	<g:checkBox name="accountExpired" value="${ressourceInstance?.accountExpired}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'accountLocked', 'error')} ">
+	<label for="accountLocked">
+		<g:message code="ressource.accountLocked.label" default="Account Locked" />
+		
+	</label>
+	<g:checkBox name="accountLocked" value="${ressourceInstance?.accountLocked}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'enabled', 'error')} ">
+	<label for="enabled">
+		<g:message code="ressource.enabled.label" default="Enabled" />
+		
+	</label>
+	<g:checkBox name="enabled" value="${ressourceInstance?.enabled}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'modules', 'error')} required">
+	<label for="modules">
+		<g:message code="ressource.modules.label" default="Modules" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="modules" name="modules.id" from="${taskmanagement1.Module.list()}" optionKey="id" required="" value="${ressourceInstance?.modules?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'passwordExpired', 'error')} ">
+	<label for="passwordExpired">
+		<g:message code="ressource.passwordExpired.label" default="Password Expired" />
+		
+	</label>
+	<g:checkBox name="passwordExpired" value="${ressourceInstance?.passwordExpired}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'projet', 'error')} required">
+	<label for="projet">
+		<g:message code="ressource.projet.label" default="Projet" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="projet" name="projet.id" from="${taskmanagement1.Project.list()}" optionKey="id" required="" value="${ressourceInstance?.projet?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'role', 'error')} required">
+	<label for="role">
+		<g:message code="ressource.role.label" default="Role" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="role" name="role.id" from="${taskmanagement1.secu.Role.list()}" optionKey="id" required="" value="${ressourceInstance?.role?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ressourceInstance, field: 'taches', 'error')} required">
+	<label for="taches">
+		<g:message code="ressource.taches.label" default="Taches" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="taches" name="taches.id" from="${taskmanagement1.Task.list()}" optionKey="id" required="" value="${ressourceInstance?.taches?.id}" class="many-to-one"/>
+</div>
+
